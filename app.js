@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
 
+// try a connection with database
+require('./src/Database/db')()
+
+
+// default config
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
