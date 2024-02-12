@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+const mongoose = require('mongoose')
+
 // try a connection with database
 require('./src/Database/db')()
 
