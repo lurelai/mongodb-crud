@@ -12,5 +12,16 @@ const create = (add)=>{
     })
 }
 
-module.exports = { create }
+const erase = (toDelete)=>{
+    return new Promise(async (resolve, reject)=>{
+        try{
+            await User.findOneAndDelete(toDelete)
+            resolve({m̀essage: 'User deleted'})
+        }catch(err){
+            resolve({message: err})
+        }
+    })
+}
+
+module.exports = { create, erase }
 

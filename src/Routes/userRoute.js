@@ -1,7 +1,8 @@
 const router = require('express').Router()
-const { createController } = require('../Controllers/userController')
+const { createController, eraseController } = require('../Controllers/userController')
 
-router.post('/', createController)
+router.post('/create', createController)
+router.delete('/delete', eraseController)
 
 module.exports = app=>app.use('/user', router)
 
