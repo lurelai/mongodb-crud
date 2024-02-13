@@ -1,4 +1,4 @@
-const { create, erase } = require('../Services/userService')
+const { create, erase, update } = require('../Services/userService')
 
 const createController = async (req, res)=>{
     if(!req.body.userPersonal)
@@ -33,5 +33,30 @@ const eraseController = async (req, res)=>{
     return res.send(message)
 }
 
-module.exports = { createController, eraseController }
+const updateController = async (req, res)=>{
+    const { nickname } = req.params
+    const { email, password } = req.body
+
+    console.log(nickname, email, password)
+
+    if(!nickname)
+        return res.status(401).send('Bad requestion')
+
+    if(!email && !password )
+        return res.status(401).send('Bad requestion')
+
+    const toUpdate = {}
+
+    if(email)
+        toUpdate.email = email
+
+    if(password)
+        toUpdate.password = password
+
+    const message = await update({nickname}, toUpdate)
+
+    return res.status(201).send(message)
+}
+
+module.exports = { createController, eraseController, updateController }
 

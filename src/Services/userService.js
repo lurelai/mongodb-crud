@@ -23,5 +23,17 @@ const erase = (toDelete)=>{
     })
 }
 
-module.exports = { create, erase }
+const update = (nickname, toUpdate)=>{
+    return new Promise(async (resolve)=>{
+        try{
+            await User.updateOne(nickname, toUpdate)
+            resolve({message: 'user updated'})
+        }catch(err){
+            console.log(err)
+            resolve({message: err})
+        }
+    })
+}
+
+module.exports = { create, erase, update }
 
